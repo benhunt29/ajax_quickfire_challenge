@@ -5,32 +5,36 @@ $(document).ready(function() {
 
     $.ajax('data.json', {
         type: 'GET',
-        success: callback,
+        success: callbackData,
         error: function(request, errorType, errorMessage){
             alert(errorType + " " + errorMessage);
         }
     });
 
+    function templateGet(data){
+	    $.ajax('handlebarsTemplate.html', {
+	        type: 'GET',
+	        dataType: 'html',
+	        success: function(response){
+	        	
+				var source   = response;
+			    var template = Handlebars.compile(source);
+			    $('.content').html(template(data));
+
+			},
+	        error: function(request, errorType, errorMessage){
+	            alert(errorType + " " + errorMessage);
+	        }
+	    });
+	}
+
+function callbackData(response){
+	templateGet(response);
+}
+
 
 
 })
 
-function callback(response){
-	// response.forEach(function(object,index){
-	// 	var $newDiv = $('<div>', { class: response[index].color });
-	// 	var $newP = $('<p>');
-	// 	var $currentDiv, $currentP;
-	// 	$('body').append($newDiv);
-	// 	$currentDiv = $('body').children().last();
-	// 	$currentDiv.append($newP);
-	// 	$currentP = $currentDiv.children().first();
-	// 	$currentP.text(response[index].color)
 
-
-	// });
-
-	var source   = $("#entry-template").html();
-    var template = Handlebars.compile(source);
-    $('.content').html(template(response));
-}
 
