@@ -16,16 +16,21 @@ $(document).ready(function() {
 })
 
 function callback(response){
-	response.forEach(function(object,index){
-		var $newDiv = $('<div>', { class: response[index].color });
-		// $newDiv.text('Some Text');
-		var $newP = $('<p>');
-		var $currentDiv, $currentP;
-		$('body').append($newDiv);
-		$currentDiv = $('body').children().last();
-		$currentDiv.append($newP);
-		$currentP = $currentDiv.children().first();
-		$currentP.text(response[index].color)
-	});
+	// response.forEach(function(object,index){
+	// 	var $newDiv = $('<div>', { class: response[index].color });
+	// 	var $newP = $('<p>');
+	// 	var $currentDiv, $currentP;
+	// 	$('body').append($newDiv);
+	// 	$currentDiv = $('body').children().last();
+	// 	$currentDiv.append($newP);
+	// 	$currentP = $currentDiv.children().first();
+	// 	$currentP.text(response[index].color)
+
+
+	// });
+
+	var source   = $("#entry-template").html();
+    var template = Handlebars.compile(source);
+    $('.content').html(template(response));
 }
 

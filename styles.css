@@ -8,6 +8,7 @@
 
 .blue {
     background-color: #00f;
+    color: white;
   }  
 
 .cyan {
@@ -24,4 +25,13 @@
 
 .black{
   background-color: #000;
+  color: white;
+}
+
+div {
+  margin: 10px;
+}
+
+p {
+  font-size: 20px;
 }
